@@ -5,22 +5,22 @@ echom "You are now officially better than 99% of dumb javascript bloat spammers"
 " Go to line XX for main code
 
 function DetectProjectType()
-	if filereadable('./CMakeLists.txt') or filereadable('./Makefile')
-		return 'C' " also C++
-	elseif filereadable('./build.gradle') or filereadable('./build.xml') or filereadable('./build.gradle.kts')
-		return 'Java' " also kotlin
-	elseif filereadable('./Cargo.toml')
-		return 'Rust'
-	endif
+  if filereadable('./CMakeLists.txt') or filereadable('./Makefile')
+    return 'C' " also C++
+  elseif filereadable('./build.gradle') or filereadable('./build.xml') or filereadable('./build.gradle.kts')
+    return 'Java' " also kotlin
+  elseif filereadable('./Cargo.toml')
+    return 'Rust'
+  endif
 
-	if glob('./*.nimble')
-		return 'Nim'
-	endif
+  if glob('./*.nimble')
+    return 'Nim'
+  endif
 endfunction
 
 function UseClangFormat()
-	nunmap <leader>f
-	nnoremap <leader>f :ClangFormat <CR>
+  nunmap <leader>f
+  nnoremap <leader>f :ClangFormat <CR>
 endfunction
 
 " Main code
@@ -49,8 +49,8 @@ Plug 'vim-syntastic/syntastic'
 
 " neovim only plugins
 if has('nvim')
-	" Extension host (for vim-lsp-cxx-highlight and other utilities)
-	Plug 'neoclide/coc.nvim'
+  " Extension host (for vim-lsp-cxx-highlight and other utilities)
+  Plug 'neoclide/coc.nvim'
 endif
 
 Plug 'rhysd/vim-clang-format'
@@ -60,6 +60,7 @@ call plug#end()
 " Simple configs
 set number
 set relativenumber
+set expandtab
 set tabstop=2
 set shiftwidth=2
 
@@ -96,9 +97,9 @@ endfunction
 
 " ctrl+space suggest thingy
 if has('nvim')
-	inoremap <silent><expr> <C-space> coc#refresh()
+  inoremap <silent><expr> <C-space> coc#refresh()
 else
-	inoremap <silent><expr> <C-@> coc#refresh()
+  inoremap <silent><expr> <C-@> coc#refresh()
 endif
 
 " enter auto select first item if suggest window is open
