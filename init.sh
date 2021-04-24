@@ -1,5 +1,6 @@
 HOME=/home/gbnam8
 PKG=apt
+PKG_INSTALL="$PKG install -y"
 VIM_CONFIG_DIR=$HOME/.config/nvim
 MYVIMRC=$VIM_CONFIG_DIR/init.vim
 CCLS_DIR=$HOME/dev/ccls
@@ -8,25 +9,29 @@ CCLS_DIR=$HOME/dev/ccls
 $PKG update -y
 
 # Git
-$PKG install -y git
+$PKG_INSTALL git
 
 # Neovim
-$PKG install -y neovim
+$PKG_INSTALL neovim
 
 # clang (used by ccls)
-$PKG install -y libclang-dev clang clang-format
+$PKG_INSTALL libclang-dev clang clang-format
 
 # fzf and ag
-$PKG install -y fzf silversearcher-ag
+$PKG_INSTALL fzf silversearcher-ag
 
 # nodejs (used by coc.nvim)
-$PKG install -y npm
+$PKG_INSTALL npm
 
 # cmake (used to build ccls)
-$PKG install -y cmake
+$PKG_INSTALL cmake
 
 # python (used to install cpplint)
-$PKG install -y python3-pip
+$PKG_INSTALL python3-pip
+
+# git configs
+git config --global user.name "ngoduyanh"
+git config --global user.email "ngoduyanh.chip@gmail.com"
 
 mkdir ~/.config
 mkdir ~/.config/nvim
@@ -45,4 +50,12 @@ cmake -S "$CCLS_DIR" -B "$CCLS_DIR/Release" -DCMAKE_BUILD_TYPE=Release -DCMAKE_P
 cmake --build "$CCLS_DIR/Release" --target install
 
 pip3 install cpplint
+
+# Non programming stuff
+
+# gimp (for image processing) and kdenlive (for video editing)
+$PKG_INSTALL gimp kdenlive
+
+# rust (needs confirmation)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
