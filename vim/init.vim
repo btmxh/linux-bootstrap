@@ -5,9 +5,9 @@ echom "You are now officially better than 99% of dumb javascript bloat spammers"
 " Go to line XX for main code
 
 function DetectProjectType()
-  if filereadable('./CMakeLists.txt') or filereadable('./Makefile')
+  if filereadable('./CMakeLists.txt') || filereadable('./Makefile')
     return 'C' " also C++
-  elseif filereadable('./build.gradle') or filereadable('./build.xml') or filereadable('./build.gradle.kts')
+  elseif filereadable('./build.gradle') || filereadable('./build.xml') || filereadable('./build.gradle.kts')
     return 'Java' " also kotlin
   elseif filereadable('./Cargo.toml')
     return 'Rust'
@@ -21,6 +21,26 @@ endfunction
 function UseClangFormat()
   nunmap <leader>f
   nnoremap <leader>f :ClangFormat <CR>
+endfunction
+
+function GetBuildFile()
+  let buildfiles = ['CMakeLists.txt', 'Makefile', 'build.gradle', 'build.xml', 'build.gradle.kts', 'Cargo.toml']
+
+  for buildfile in buildfiles
+    if(filereadable(buildfile))
+      return buildfile
+    endif
+  endfor
+
+  " TODO: add nim support
+  return ""
+endfunction
+
+function OpenBuildFile()
+  let buildfile = GetBuildFile()
+  if len(buildfile) > 0
+    exec 'e' buildfile
+  endif
 endfunction
 
 " Main code
@@ -177,4 +197,9 @@ let g:airline_theme='onedark'
 hi VertSplit guifg=#606060
 
 let g:fzf_colors = { 'border': ['fg', 'VertSplit'] }
+
+" cmake keybinds
+nnoremap <F4> :call OpenBuildFile()<CR>
+nnoremap <F5> :CMakeGenerate<CR>
+nnoremap <F6> :CMakeBuild<CR>
 
