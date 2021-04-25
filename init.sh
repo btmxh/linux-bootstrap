@@ -30,7 +30,7 @@ $PKG_INSTALL cmake
 $PKG_INSTALL python3-pip
 
 # glfw
-$PKG_INSTALL libglfw-dev
+$PKG_INSTALL libglfw3-dev
 
 # git configs
 git config --global user.name "ngoduyanh"
