@@ -73,7 +73,6 @@ nnoremap <F3> :so $MYVIMRC <CR>
 inoremap jk <ESC>
 
 nnoremap <leader>c :echom "cosi" <CR>
-" nnoremap <leader>f :CocCommand prettier.formatFile <CR>
 
 nnoremap <leader>g :Files <CR>
 
@@ -131,9 +130,10 @@ nnoremap <leader>r <Plug>(coc-rename)
 " xnoremap <C-f> <Plug>(coc-format-selected)
 " nnoremap <C-f> <Plug>(coc-format-selected)
 
-xnoremap <leader>f <Plug>(coc-format-selected)
-nnoremap <leader>f <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
 
+autocmd FileType java call UseClangFormat()
 autocmd FileType c call UseClangFormat()
 autocmd FileType cpp call UseClangFormat()
 
