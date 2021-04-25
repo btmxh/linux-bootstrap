@@ -29,6 +29,9 @@ $PKG_INSTALL cmake
 # python (used to install cpplint)
 $PKG_INSTALL python3-pip
 
+# glfw
+$PKG_INSTALL libglfw-dev
+
 # git configs
 git config --global user.name "ngoduyanh"
 git config --global user.email "ngoduyanh.chip@gmail.com"
