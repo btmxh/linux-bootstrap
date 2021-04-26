@@ -1,5 +1,4 @@
 echom "Welcome to vim/neovim"
-echom "You are now officially better than 99% of dumb javascript bloat spammers"
 
 " Functions
 " Go to line XX for main code
@@ -43,6 +42,20 @@ function OpenBuildFile()
   endif
 endfunction
 
+function SwitchHeaderSource()
+  let filename = expand('%:r')
+  let ext = expand('%:e')
+  if ext ==? 'cpp'
+    exec 'e' filename . '.hpp'
+  elseif ext ==? 'hpp'
+    exec 'e' filename . '.cpp'
+  elseif ext ==? 'c'
+    exec 'e' filename . '.h'
+  elseif ext ==? 'h'
+    exec 'e' filename . '.c'
+  endif
+endfunction
+
 " Main code
 
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
@@ -81,6 +94,9 @@ Plug 'joshdick/onedark.vim'
 
 " airline
 Plug 'vim-airline/vim-airline'
+
+" cmake
+Plug 'cdelledonne/vim-cmake'
 
 call plug#end()
 
@@ -202,4 +218,5 @@ let g:fzf_colors = { 'border': ['fg', 'VertSplit'] }
 nnoremap <F4> :call OpenBuildFile()<CR>
 nnoremap <F5> :CMakeGenerate<CR>
 nnoremap <F6> :CMakeBuild<CR>
+nnoremap <F9> :call SwitchHeaderSource()<CR>
 
