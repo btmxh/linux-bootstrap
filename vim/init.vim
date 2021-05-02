@@ -32,6 +32,11 @@ function GetBuildFile()
   endfor
 
   " TODO: add nim support
+  let nimble = globpath('.', '*.nimble')
+  echom nimble
+  if len(nimble) > 0
+    return nimble
+    
   return ""
 endfunction
 
@@ -98,7 +103,16 @@ Plug 'vim-airline/vim-airline'
 " cmake
 Plug 'cdelledonne/vim-cmake'
 
+" ayaya
+Plug 'tribela/vim-transparent'
+
+" nim
+Plug 'alaviss/nim.nvim'
+Plug 'prabirshrestha/asyncomplete.vim'
+
 call plug#end()
+
+
 
 " Simple configs
 set number
@@ -115,6 +129,7 @@ nnoremap <F3> :so $MYVIMRC <CR>
 
 inoremap jk <ESC>
 
+nnoremap <leader>b :Files <CR>
 nnoremap <leader>g :GFiles <CR>
 
 " Plugin configs
@@ -185,13 +200,11 @@ autocmd FileType cpp call UseClangFormat()
 let g:syntastic_cpp_checkers = [ 'cpplint' ]
 let g:syntastic_c_checkers = [ 'cpplint' ]
 let g:syntastic_cpp_cpplint_exec = '~/.local/bin/cpplint'
-
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" theme
-colorscheme onedark
-
+"theme
+colorscheme onedark 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
