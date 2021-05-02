@@ -32,6 +32,9 @@ $PKG_INSTALL python3-pip
 # glfw
 $PKG_INSTALL libglfw3-dev
 
+# mpv
+$PKG_INSTALL mpv
+
 # git configs
 git config --global user.name "ngoduyanh"
 git config --global user.email "ngoduyanh.chip@gmail.com"
